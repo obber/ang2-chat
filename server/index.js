@@ -1,12 +1,12 @@
 import express from 'express';
-
-import { db } from './db';
+import bodyParser from 'body-parser';
+import rootRouter from './routers';
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('hello world!');
-});
+app.use(bodyParser.json());
+
+app.use(rootRouter);
 
 const port = 3000;
 app.listen(port);

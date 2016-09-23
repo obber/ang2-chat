@@ -1,0 +1,1 @@
+export messagesController from './messages.controller';

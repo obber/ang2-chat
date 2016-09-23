@@ -22,18 +22,21 @@ try {
   process.exit();
 }
 
-var sequelize = require('../server/db/').sequelize;
+// require the sequelize instance & models for definitions
+var db = require('../server/db/').db;
+require('../server/models/');
+
 var force = process.argv[2] === 'force';
 
 if (force) {
-  sequelize
+  db
     .sync({ force: true })
     .then(() => {
       console.log('Dropped tables and recreated tables in db.js');
       process.exit();
     });
 } else if (!force && process.argv.length === 2) {
-  sequelize
+  db
     .sync()
     .then(() => {
        console.log("Created tables in db.js");
